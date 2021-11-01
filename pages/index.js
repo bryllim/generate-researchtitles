@@ -14,7 +14,7 @@ import {
   SlideFade,
   useDisclosure,
 } from '@chakra-ui/react';
-import researchTitles from './researchTitles';
+import researchTitles from '../external/researchTitles';
 
 export async function getStaticProps() {
   const data = 
@@ -164,4 +164,4 @@ const Arrow = createIcon({
       fill="currentColor"
     />
   ),
-}); 
+});
