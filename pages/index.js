@@ -8,7 +8,6 @@ import {
   Button,
   Stack,
   Icon,
-  useColorModeValue,
   createIcon,
   Link,
   Badge,
@@ -17,16 +16,20 @@ import {
 } from '@chakra-ui/react';
 import researchTitles from './researchTitles';
 
-export default function researchTitle() {
+export async function getStaticProps() {
+  const data = 
+  {
+    title: researchTitles[Math.floor(Math.random()*researchTitles.length)]
+  }
+
+  return {
+    props: data
+  }
+}
+
+export default function MyApp(props) {
 
   const [ title, setTitle ] = React.useState();
-
-  React.useEffect(() => {
-    getTitle()
-    return () => {
-      unsubscribe;
-    }
-  }, []);
 
   const getTitle = () => {
     setTitle(researchTitles[Math.floor(Math.random()*researchTitles.length)])
@@ -72,7 +75,7 @@ export default function researchTitle() {
               shadow="md"
               fontWeight={600}
             >
-              {title}
+              {title ? title : props.title}
             </Box>
           </SlideFade>
           : null }
@@ -116,7 +119,7 @@ export default function researchTitle() {
             <Box>
               <Icon
                 as={Arrow}
-                color={useColorModeValue('gray.800', 'gray.300')}
+                color={'gray.800'}
                 w={71}
                 position={'absolute'}
                 right={-71}
